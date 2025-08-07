@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple File Upload - GoFile Style</title>
+  <style>
+    /* Reset & basics */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+    header {
+      margin-top: 40px;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #2a74da;
+    }
+    .upload-container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(42, 116, 218, 0.15);
+      width: 320px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .upload-container p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: #555;
+    }
+    input[type="file"] {
+      display: none;
+    }
+    label.upload-btn {
+      background: #2a74da;
+      color: white;
+      padding: 12px 24px;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    label.upload-btn:hover {
+      background: #1f5abb;
+    }
+    .file-info {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #222;
+      word-break: break-all;
+    }
+    .upload-status {
+      margin-top: 25px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #2a74da;
+      min-height: 1.2em;
+    }
+    button.upload-submit {
+      margin-top: 20px;
+      background: #2a74da;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    button.upload-submit:disabled {
+      background: #8ab4f8;
+      cursor: not-allowed;
+    }
+    button.upload-submit:hover:not(:disabled) {
+      background: #1f5abb;
+    }
+    footer {
+      margin-top: auto;
+      margin-bottom: 30px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <header>SimpleFile.io</header>
+
+  <div class="upload-container">
+    <p>Select your file to upload</p>
+
+    <input type="file" id="fileInput" />
+    <label for="fileInput" class="upload-btn">Choose File</label>
+
+    <div class="file-info" id="fileInfo">No file chosen</div>
+
+    <button class="upload-submit" id="uploadBtn" disabled>Upload</button>
+
+    <div class="upload-status" id="uploadStatus"></div>
+  </div>
+
+  <footer>© 2025 SimpleFile.io</footer>
+
+  <script>
+    const fileInput = document.getElementById("fileInput");
+    const fileInfo = document.getElementById("fileInfo");
+    const uploadBtn = document.getElementById("uploadBtn");
+    const uploadStatus = document.getElementById("uploadStatus");
+
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files.length > 0) {
+        fileInfo.textContent = Selected: ${fileInput.files[0].name} (${(fileInput.files[0].size / 1024 / 1024).toFixed(2)} MB);
+        uploadBtn.disabled = false;
+        uploadStatus.textContent = "";
+      } else {
+        fileInfo.textContent = "No file chosen";
+        uploadBtn.disabled = true;
+      }
+    });
+
+    uploadBtn.addEventListener("click", () => {
+      if (!fileInput.files.length) return;
+
+      uploadStatus.textContent = "Uploading...";
+
+      // Simulate upload delay
+      setTimeout(() => {
+        uploadStatus.textContent = "Upload successful! Your file is ready.";
+        uploadBtn.disabled = true;
+        fileInput.value = "";
+        fileI
