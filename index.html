@@ -1,132 +1,210 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Password Protected</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: #1e1e2f;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-
-    .container {
-      max-width: 500px;
-      margin: 100px auto;
-      background-color: #2c2c3c;
-      padding: 50px 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    }
-
-    .lock-icon {
-      font-size: 36px;
-      margin-bottom: 15px;
-    }
-
-    h2 {
-      font-size: 22px;
-      margin-bottom: 35px;
-    }
-
-    input[type="password"] {
-      width: 100%;
-      padding: 20px;
-      font-size: 20px;
-      border: none;
-      border-radius: 10px;
-      background-color: #3c3c50;
-      color: white;
-      margin-bottom: 25px;
-      box-sizing: border-box;
-    }
-
-    button {
-      width: 100%;
-      padding: 20px;
-      font-size: 20px;
-      background-color: #4285f4;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-sizing: border-box;
-    }
-
-    button:hover {
-      background-color: #357ae8;
-    }
-
-    footer {
-      margin-top: 60px;
-      font-size: 13px;
-      color: #aaa;
-    }
-
-    a {
-      color: #80b3ff;
-      text-decoration: none;
-    }
-
-    .sponsor {
-      margin-top: 30px;
-      background-color: black;
-      color: white;
-      padding: 10px;
-    }
-
-    @media screen and (max-width: 600px) {
-      .container {
-        margin: 50px 20px;
-        padding: 40px 20px;
-      }
-
-      input[type="password"],
-      button {
-        font-size: 18px;
-        padding: 18px;
-      }
-    }
-  </style>
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-title" content="VIP Group">
+    <title>VIP Group - Exclusive Access</title>
+    
+    <!-- Preload de recursos críticos -->
+    <link rel="preload" href="css/bootstrap.min.css" as="style">
+    <link rel="preload" href="css/all.min.css" as="style">
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="accests/video/vsl.MOV" as="video">
+    <link rel="preload" href="accests/js/script.js" as="script">
+    
+    <!-- Importação do framework Bootstrap para estilização responsiva -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Importação da biblioteca de ícones Font Awesome -->
+    <link rel="stylesheet" href="css/all.min.css" media="print" onload="this.media='all'">
+    <!-- Importação do arquivo de estilos personalizados -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Script do Stripe para processamento de pagamentos (carregado de forma assíncrona) -->
+    <script async="" src="js/buy-button.js" defer=""></script>
+    
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Get exclusive VIP access to premium content. Limited time offer!">
+    <meta name="keywords" content="VIP, exclusive, premium content, limited offer">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="accests/images/favicon.png">
+    
+    <!-- Preload de fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 </head>
 <body>
-  <div class="container">
-    <div class="lock-icon">🔒</div>
-    <h2>This content is password protected</h2>
-    <form onsubmit="unlock(event)">
-      <input type="password" id="password" placeholder="Enter Password"><br>
-      <button type="submit">🔓 Unlock</button>
-    </form>
+    <!-- Banner superior com contagem regressiva para criar senso de urgência -->
+    <div class="deadline-banner">
+        <i class="fas fa-clock"></i> LIMITED OFFER: EXPIRES IN 
+        <span id="countdown">
+            <span id="minutes">02</span>:<span id="seconds">00</span>
+        </span>
+    </div>
+
+  <div style="text-align: center; background-color: white; padding: 20px 0 0 0; line-height: 1; margin-bottom: 0px;">
+  <h1 style="font-size: 36px; font-weight: bold; margin: 0;">
+    <div style="color: black;">Access exclusive</div>
+    <div style="color: black;">content in the <span style="color: #9f03f9;">VIP</span></div>
+    <div style="color: #872fbb;">Group</div>
+  </h1>
+</div>
+
+    <!-- Container principal que contém o vídeo e a seção de pagamento -->
+    <div class="container vsl-container">
+        <!-- Container do vídeo com proporção 16:9 para manter o aspecto correto -->
+        <div class="video-wrapper">
+            <video id="mainVideo" controls="" autoplay="" playsinline="" webkit-playsinline="" preload="auto" muted="" style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="media/vsl.mp4" type="video/mp4">
+                <source src="accests/video/vsl.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <!-- Contador de visualizações movido para dentro do vídeo -->
+            <div class="live-viewers">
+                <i class="fas fa-eye"></i>
+                <span id="viewerCount">0</span> people watching
+            </div>
+        </div>
+        
+        <!-- Seção de chamada para ação (Call-to-Action) -->
+<!-- Bloco completo unificado -->
+<div style="background-color:#ffffff00; border: 2px solid #fffbfb; border-radius: 0px; padding: 30px; max-width: 600px; margin: 30px auto; box-shadow: 0 0 15px rgba(0,0,0,0.1); text-align: center;">
+
+  <!-- Seção de chamada para ação (Call-to-Action) -->
+ 
+    <p style="font-size: 26px; font-weight: bold; color: black;">
+      Join the VIP group, now with lifetime access
+    </p>
+    <p style="font-size: 18px; color: rgb(70, 70, 70);">
+      More than 10 Mega Link bonus packages
+    </p>
+
+
+  <!-- Botão principal de pagamento com link para o Stripe -->
+  <button onclick="showPaymentOptions()" class="payment-button" style="cursor: pointer; margin: 20px 0;">
+    <i class="fas fa-lock"></i> GET VIP ACCESS NOW
+  </button>
+
+  <!-- Seção dos métodos de pagamento -->
+<!-- Seção dos métodos de pagamento -->
+<div class="payment-methods" style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 20px; background-color: white; color: black; padding: 20px; border-radius: 10px;">
+  
+  <!-- PayPal -->
+  <div class="payment-method" style="text-align: center; margin: 5px;">
+    <i class="fab fa-paypal" style="font-size: 22px; display: block;"></i>
+    <span style="font-size: 9px; margin-top: 2px; display: inline-block;">PayPal</span>
   </div>
 
-  <footer>
-    <div>
-      <a href="#">Home</a> | 
-      <a href="#">Terms of Service</a> | 
-      <a href="#">Privacy Policy</a> | 
-      <a href="#">Copyright</a> | 
-      <a href="#">Contact</a>
-    </div>
-    <div style="margin-top:10px;">
-      WOJTEK SAS © 2025
-    </div>
-    <div class="sponsor">SPONSOR</div>
-  </footer>
+  <!-- Credit Card -->
+  <div class="payment-method" style="text-align: center; margin: 10px;">
+    <i class="fas fa-credit-card" style="font-size: 24px; display: block;"></i>
+    <span style="font-size: 9px; margin-top: 2px; display: inline-block;">Credit Card</span>
+  </div>
 
-  <script>
-    function unlock(event) {
-      event.preventDefault();
-      // 入力内容は無視してURLに遷移
-      window.location.href = "https://www.mov18plus.online/";
-    }
-  </script>
-</body>
-</html>
+  <!-- Crypto -->
+  <div class="payment-method" style="text-align: center; margin: 10px;">
+    <i class="fab fa-bitcoin" style="font-size: 24px; display: block;"></i>
+    <span style="font-size: 9px; margin-top: 2px; display: inline-block;">Crypto</span>
+  </div>
+
+  <!-- Apple Pay -->
+  <div class="payment-method" style="text-align: center; margin: 8px;">
+    <i class="fab fa-apple-pay" style="font-size: 24px; display: block;"></i>
+    <span style="font-size: 9px; margin-top: 2px; display: inline-block;">Apple Pay</span>
+  </div>
+
+</div>
+
+<!-- Bloco de conteúdo exclusivo com rolagem automática -->
+<!-- Bloco de conteúdo exclusivo com carrossel -->
+<div class="exclusive-content-section">
+  <h2 class="exclusive-title">Exclusive Content</h2>
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <!-- 6 imagens (coloque os arquivos certos no caminho abaixo) -->
+      <img src="images/sample1.webp" alt="Content 1">
+      <img src="images/sample2.webp" alt="Content 2">
+      <img src="images/sample3.webp" alt="Content 3">
+      <img src="images/sample4.webp" alt="Content 4">
+      <img src="images/sample5.webp" alt="Content 5">
+      <img src="images/sample6.webp" alt="Content 6">
+
+      <!-- Duplicadas para efeito contínuo -->
+      <img src="images/sample1.webp" alt="Content 1">
+      <img src="images/sample2.webp" alt="Content 2">
+      <img src="images/sample3.webp" alt="Content 3">
+      <img src="images/sample4.webp" alt="Content 4">
+      <img src="images/sample5.webp" alt="Content 5">
+      <img src="images/sample6.webp" alt="Content 6">
+    </div>
+  </div>
+</div>
+
+</div>
+
+                <!-- Botão de contato alternativo via Telegram com gradiente -->
+                <div class="telegram-container">
+                    <a href="https://t.me/Darkmidia?text=Hello!%20I%20would%20like%20to%20buy%0A%0AContent:%20Access%20to%20the%20VIP%20group%20of%20Cp.%20Buy%20Teens%20and%20all%20other%20leaked%20content%0ADescription:%0AExclusive%20high%20quality%20content%20%E2%80%A2%20Lifetime%20access%20%E2%80%A2%20Instant%20delivery" class="telegram-button" target="_blank" rel="noopener" style="background: linear-gradient(45deg, #0088cc, #00a2ff);">
+                        <i class="fab fa-telegram"></i> Contact via Telegram
+                    </a>
+                </div>
+            </div>
+        
+    
+
+    <!-- Importação do JavaScript do Bootstrap para funcionalidades interativas -->
+    <script src="js/bootstrap.bundle.min.js" defer=""></script>
+    <!-- Importação do script personalizado -->
+    <script src="js/script.js" defer=""></script>
+    <!-- Modal com botões de pagamento -->
+<div id="payment-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 9999; align-items: center; justify-content: center;">
+  <div style="background: white; padding: 30px 40px; border-radius: 14px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); text-align: center; position: relative; width: 90%; max-width: 420px;">
+
+    <!-- Botão "X" -->
+    <button onclick="closeModal()" style="position: absolute; top: 12px; right: 15px; background: none; border: none; font-size: 22px; color: #777; cursor: pointer;">�</button>
+
+    <!-- Título -->
+    <h2 style="margin-bottom: 10px; color: black; font-size: 22px; font-weight: bold;">
+      Choose a payment option <span style="color: #007bff;">| Price $30</span>
+    </h2>
+
+    <!-- Subtexto -->
+    <p style="margin-top: 0; color: #666; font-size: 15px; margin-bottom: 25px;">
+      You will receive VIP access after payment.<br>If your payment fails, call on Telegram.
+    </p>
+
+    <!-- Botão Apple Pay / Cartão -->
+    <a href="https://t.me/darkmidia?text=Hello!%20I%20would%20like%20to%20buy%0A%0AContent:%20Access%20to%20the%20VIP%20group%20of%20Cp" target="_blank" style="text-decoration: none;">
+      <button style="width: 100%; padding: 14px; background-color: #e53935; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <i class="fas fa-credit-card"></i> CARD OR APPLE PAY
+      </button>
+    </a>
+
+    <!-- Botão PayPal / Cartão -->
+    <a href="https://t.me/darkmidia?text=Hello!%20I%20would%20like%20to%20buy%0A%0AContent:%20Access%20to%20the%20VIP%20group%20of%20Cp" target="_blank" style="text-decoration: none;">
+      <button style="width: 100%; padding: 14px; background-color: #0070ba; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <i class="fab fa-paypal"></i> CARD OR PAYPAL
+      </button>
+    </a>
+
+  </div>
+</div>
+<script>
+  function showPaymentOptions() {
+    document.getElementById("payment-modal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("payment-modal").style.display = "none";
+  }
+</script>
+
+
+
+</body></html>
