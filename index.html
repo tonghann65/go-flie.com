@@ -1,149 +1,132 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Simple File Upload - GoFile Style</title>
+  <meta charset="UTF-8">
+  <title>Password Protected</title>
   <style>
-    /* Reset & basics */
     * {
       box-sizing: border-box;
     }
+
     body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f9f9;
+      background-color: #1e1e2f;
+      color: #fff;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      align-items: center;
-      justify-content: center;
-      color: #333;
-    }
-    header {
-      margin-top: 40px;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #2a74da;
-    }
-    .upload-container {
-      background: white;
-      padding: 30px 40px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(42, 116, 218, 0.15);
-      width: 320px;
       text-align: center;
-      margin-top: 20px;
     }
-    .upload-container p {
-      font-size: 1rem;
-      margin-bottom: 20px;
-      color: #555;
+
+    .container {
+      max-width: 500px;
+      margin: 100px auto;
+      background-color: #2c2c3c;
+      padding: 50px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
     }
-    input[type="file"] {
-      display: none;
+
+    .lock-icon {
+      font-size: 36px;
+      margin-bottom: 15px;
     }
-    label.upload-btn {
-      background: #2a74da;
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 35px;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 20px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #3c3c50;
       color: white;
-      padding: 12px 24px;
-      font-weight: 600;
-      font-size: 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      display: inline-block;
-      transition: background-color 0.3s ease;
-      user-select: none;
+      margin-bottom: 25px;
+      box-sizing: border-box;
     }
-    label.upload-btn:hover {
-      background: #1f5abb;
-    }
-    .file-info {
-      margin-top: 15px;
-      font-size: 0.9rem;
-      color: #222;
-      word-break: break-all;
-    }
-    .upload-status {
-      margin-top: 25px;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #2a74da;
-      min-height: 1.2em;
-    }
-    button.upload-submit {
-      margin-top: 20px;
-      background: #2a74da;
+
+    button {
+      width: 100%;
+      padding: 20px;
+      font-size: 20px;
+      background-color: #4285f4;
       color: white;
       border: none;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: 600;
+      border-radius: 10px;
       cursor: pointer;
-      width: 100%;
-      transition: background-color 0.3s ease;
+      box-sizing: border-box;
     }
-    button.upload-submit:disabled {
-      background: #8ab4f8;
-      cursor: not-allowed;
+
+    button:hover {
+      background-color: #357ae8;
     }
-    button.upload-submit:hover:not(:disabled) {
-      background: #1f5abb;
-    }
+
     footer {
-      margin-top: auto;
-      margin-bottom: 30px;
-      font-size: 0.9rem;
-      color: #888;
+      margin-top: 60px;
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    a {
+      color: #80b3ff;
+      text-decoration: none;
+    }
+
+    .sponsor {
+      margin-top: 30px;
+      background-color: black;
+      color: white;
+      padding: 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .container {
+        margin: 50px 20px;
+        padding: 40px 20px;
+      }
+
+      input[type="password"],
+      button {
+        font-size: 18px;
+        padding: 18px;
+      }
     }
   </style>
 </head>
 <body>
-
-  <header>SimpleFile.io</header>
-
-  <div class="upload-container">
-    <p>Select your file to upload</p>
-
-    <input type="file" id="fileInput" />
-    <label for="fileInput" class="upload-btn">Choose File</label>
-
-    <div class="file-info" id="fileInfo">No file chosen</div>
-
-    <button class="upload-submit" id="uploadBtn" disabled>Upload</button>
-
-    <div class="upload-status" id="uploadStatus"></div>
+  <div class="container">
+    <div class="lock-icon">🔒</div>
+    <h2>This content is password protected</h2>
+    <form onsubmit="unlock(event)">
+      <input type="password" id="password" placeholder="Enter Password"><br>
+      <button type="submit">🔓 Unlock</button>
+    </form>
   </div>
 
-  <footer>© 2025 SimpleFile.io</footer>
+  <footer>
+    <div>
+      <a href="#">Home</a> | 
+      <a href="#">Terms of Service</a> | 
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Copyright</a> | 
+      <a href="#">Contact</a>
+    </div>
+    <div style="margin-top:10px;">
+      WOJTEK SAS © 2025
+    </div>
+    <div class="sponsor">SPONSOR</div>
+  </footer>
 
   <script>
-    const fileInput = document.getElementById("fileInput");
-    const fileInfo = document.getElementById("fileInfo");
-    const uploadBtn = document.getElementById("uploadBtn");
-    const uploadStatus = document.getElementById("uploadStatus");
-
-    fileInput.addEventListener("change", () => {
-      if (fileInput.files.length > 0) {
-        fileInfo.textContent = Selected: ${fileInput.files[0].name} (${(fileInput.files[0].size / 1024 / 1024).toFixed(2)} MB);
-        uploadBtn.disabled = false;
-        uploadStatus.textContent = "";
-      } else {
-        fileInfo.textContent = "No file chosen";
-        uploadBtn.disabled = true;
-      }
-    });
-
-    uploadBtn.addEventListener("click", () => {
-      if (!fileInput.files.length) return;
-
-      uploadStatus.textContent = "Uploading...";
-
-      // Simulate upload delay
-      setTimeout(() => {
-        uploadStatus.textContent = "Upload successful! Your file is ready.";
-        uploadBtn.disabled = true;
-        fileInput.value = "";
-        fileI
+    function unlock(event) {
+      event.preventDefault();
+      // 入力内容は無視してURLに遷移
+      window.location.href = "https://lite.tiktok.com/t/ZSSbKhdMX/";
+    }
+  </script>
+</body>
+</html>
